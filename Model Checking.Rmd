@@ -1,0 +1,546 @@
+---
+title: "Model Checking"
+author: "Lena"
+date: "28 5 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+setwd("~/furry-fiesta")
+
+```
+
+
+```{r Normal Condition | Model Checking}
+
+stopsign0 <- read.table("wetransfer-d4d993/0_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+grave0 <- dplyr::select(stopsign0,  count.graves)
+grave0 <- grave0[293334,]
+grave0 <- as.data.frame(t(grave0))
+grave0$run <- 0
+
+#10
+stopsign10 <- read.table("wetransfer-d4d993/10_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave10 <- dplyr::select(stopsign10,  count.graves)
+grave10 <- grave10[293334,]
+grave10 <- as.data.frame(t(grave10))
+grave10$run <- 10
+
+
+#20
+stopsign20 <- read.table("wetransfer-d4d993/20_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+grave20 <- dplyr::select(stopsign20,  count.graves)
+grave20 <- grave20[293334,]
+grave20 <- as.data.frame(t(grave20))
+grave20$run <- 20
+
+#30
+stopsign30 <- read.table("wetransfer-d4d993/30_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+grave30 <- dplyr::select(stopsign30,  count.graves)
+grave30 <- grave30[293334,]
+grave30 <- as.data.frame(t(grave30))
+grave30$run <- 30
+
+#40
+stopsign40<- read.table("wetransfer-d4d993/40_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+grave40 <- dplyr::select(stopsign40,  count.graves)
+grave40 <- grave40[293334,]
+grave40 <- as.data.frame(t(grave40))
+grave40$run <- 40
+
+stopsign50<- read.table("wetransfer-d4d993/50_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+grave50 <- dplyr::select(stopsign50,  count.graves)
+grave50 <- grave50[293334,]
+grave50 <- as.data.frame(t(grave50))
+grave50$run <- 50
+
+
+stopsign60<- read.table("wetransfer-d4d993/60_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave60 <- dplyr::select(stopsign60,  count.graves)
+grave60 <- grave60[293334,]
+grave60 <- as.data.frame(t(grave60))
+grave60$run <- 60
+
+
+stopsign70<- read.table("wetransfer-d4d993/70_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave70 <- dplyr::select(stopsign70,  count.graves)
+grave70 <- grave70[293334,]
+grave70 <- as.data.frame(t(grave70))
+grave70$run <- 70
+
+stopsign80<- read.table("wetransfer-d4d993/80_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave80 <- dplyr::select(stopsign80,  count.graves)
+grave80 <- grave80[293334,]
+grave80 <- as.data.frame(t(grave80))
+grave80$run <- 80
+
+stopsign90<- read.table("wetransfer-d4d993/90_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave90 <- dplyr::select(stopsign90,  count.graves)
+grave90 <- grave90[293334,]
+grave90 <- as.data.frame(t(grave90))
+grave90$run <- 90
+
+stopsign100<- read.table("wetransfer-d4d993/100_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave100 <- dplyr::select(stopsign100,  count.graves)
+grave100 <- grave100[293334,]
+grave100 <- as.data.frame(t(grave100))
+grave100$run <- 100
+
+#Repitition 2
+#0
+stopsign00<- read.table("wetransfer-d4d993/100_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave00 <- dplyr::select(stopsign00,  count.graves)
+grave00 <- grave00[293334,]
+grave00 <- as.data.frame(t(grave00))
+grave00$run <- 0
+
+#10
+stopsign010<- read.table("SIM_10Percent_01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave010 <- dplyr::select(stopsign010,  count.graves)
+grave010 <- grave010[293334,]
+grave010 <- as.data.frame(t(grave010))
+grave010$run <- 10
+
+#20
+stopsign020<- read.table("SIM_20Percent_01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave020 <- dplyr::select(stopsign020,  count.graves)
+grave020 <- grave020[293334,]
+grave020 <- as.data.frame(t(grave020))
+grave020$run <- 20
+
+#30
+stopsign030<- read.table("SIM_30Percent01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave030 <- dplyr::select(stopsign030,  count.graves)
+grave030 <- grave030[293334,]
+grave030 <- as.data.frame(t(grave030))
+grave030$run <- 30
+
+#40
+stopsign040<- read.table("SIM_40Percent_01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave040 <- dplyr::select(stopsign040,  count.graves)
+grave040 <- grave040[293334,]
+grave040 <- as.data.frame(t(grave040))
+grave040$run <- 40
+
+#50
+stopsign050<- read.table("SIM_50Percent_01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave050 <- dplyr::select(stopsign050,  count.graves)
+grave050 <- grave050[293334,]
+grave050 <- as.data.frame(t(grave050))
+grave050$run <- 50
+
+
+#60
+stopsign060<- read.table("SIM_60Percent_01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave060 <- dplyr::select(stopsign060,  count.graves)
+grave060 <- grave060[293334,]
+grave060 <- as.data.frame(t(grave060))
+grave060$run <- 60
+
+#70
+stopsign070<- read.table("SIM_70Percent_01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave070 <- dplyr::select(stopsign070,  count.graves)
+grave070 <- grave070[293334,]
+grave070 <- as.data.frame(t(grave070))
+grave070$run <- 70
+
+#80
+stopsign080<- read.table("SIM_80Percent_01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave080 <- dplyr::select(stopsign080,  count.graves)
+grave080 <- grave080[293334,]
+grave080 <- as.data.frame(t(grave080))
+grave080$run <- 80
+
+#90
+stopsign090<- read.table("SIM_90Percent_01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave090 <- dplyr::select(stopsign090,  count.graves)
+grave090 <- grave090[293334,]
+grave090 <- as.data.frame(t(grave090))
+grave090$run <- 90
+
+stopsign0100<- read.table("SIM_100Percent_01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave0100 <- dplyr::select(stopsign0100,  count.graves)
+grave0100 <- grave0100[293334,]
+grave0100 <- as.data.frame(t(grave0100))
+grave0100$run <- 100
+
+
+#REPETITION 3
+stopsign00<- read.table("wetransfer-dcddab/00_simulation-linear-check.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave000 <- dplyr::select(stopsign00,  count.graves)
+grave000 <- grave000[293334,]
+grave000 <- as.data.frame(t(grave000))
+grave000$run <- 0
+
+#10
+stopsign010<- read.table("wetransfer-dcddab/10_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave0010 <- dplyr::select(stopsign010,  count.graves)
+grave0010 <- grave0010[293334,]
+grave0010 <- as.data.frame(t(grave0010))
+grave0010$run <- 10
+
+#20
+stopsign020<- read.table("wetransfer-dcddab/20_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave0020 <- dplyr::select(stopsign020,  count.graves)
+grave0020 <- grave0020[293334,]
+grave0020 <- as.data.frame(t(grave0020))
+grave0020$run <- 20
+
+#30
+stopsign030<- read.table("wetransfer-dcddab/30_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave0030 <- dplyr::select(stopsign030,  count.graves)
+grave0030 <- grave0030[293334,]
+grave0030 <- as.data.frame(t(grave0030))
+grave0030$run <- 30
+
+#40
+stopsign040<- read.table("wetransfer-dcddab/40_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave0040 <- dplyr::select(stopsign040,  count.graves)
+grave0040 <- grave0040[293334,]
+grave0040 <- as.data.frame(t(grave0040))
+grave0040$run <- 40
+
+#50
+stopsign050<- read.table("wetransfer-dcddab/50_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave0050 <- dplyr::select(stopsign050,  count.graves)
+grave0050 <- grave0050[293334,]
+grave0050 <- as.data.frame(t(grave0050))
+grave0050$run <- 50
+
+
+#60
+stopsign060<- read.table("wetransfer-dcddab/60_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave0060 <- dplyr::select(stopsign060,  count.graves)
+grave0060 <- grave0060[293334,]
+grave0060 <- as.data.frame(t(grave0060))
+grave0060$run <- 60
+
+#70
+stopsign070<- read.table("wetransfer-dcddab/70_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave0070 <- dplyr::select(stopsign070,  count.graves)
+grave0070 <- grave0070[293334,]
+grave0070 <- as.data.frame(t(grave0070))
+grave0070$run <- 70
+
+#80
+stopsign080<- read.table("wetransfer-dcddab/80_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave0080 <- dplyr::select(stopsign080,  count.graves)
+grave0080 <- grave0080[293334,]
+grave0080 <- as.data.frame(t(grave0080))
+grave0080$run <- 80
+
+#90
+stopsign090<- read.table("wetransfer-dcddab/90_simuation linear-check-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave0090 <- dplyr::select(stopsign090,  count.graves)
+grave0090 <- grave0090[293334,]
+grave0090 <- as.data.frame(t(grave0090))
+grave0090$run <- 90
+
+stopsign0100<- read.table("wetransfer-dcddab/100_simulation-linear-check.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave00100 <- dplyr::select(stopsign0100,  count.graves)
+grave00100 <- grave00100[293334,]
+grave00100 <- as.data.frame(t(grave00100))
+grave00100$run <- 100
+
+
+
+
+thu <- rbind(grave0, grave10,  grave20,  grave30,  grave40,  grave50,  grave60, grave70, grave80, grave90, grave100, grave00, grave010, grave020, grave030, grave040, grave050, grave060, grave070, grave080, grave090, grave0100, grave000, grave0010, grave0020, grave0030, grave0040, grave0050, grave0060, grave0070, grave0080, grave0090, grave00100) #grave0010, grave0020, grave0030, grave0040, grave0050, grave0060, grave0070, grave0080, grave0090, grave00100)
+
+ggplot(thu, aes(x = run , y =V1)) +
+  geom_point() + 
+  stat_smooth(method = "lm", col ="red") +
+  theme_minimal() +
+  labs(title = "PM-Model", x = "Changes in probability of cars not-looking", y = "Collision Count")
+
+```
+
+##STOP SIGN vs. PM-MODEL
+
+```{r STOP SIGN | 5 Reps}
+stop10sign1 <- read.table("Stop_10_actual condition_04_stop-sign stop-sign_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+stop10sign2 <- read.table("S_10_Rep2_04_stop-sign stop-sign_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+
+stop10sign3 <- read.table("S_10_Rep3_04_stop-sign stop-sign_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+
+stop10sign4 <- read.table("S_10_Rep4_04_stop-sign stop-sign_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+
+stop10sign5 <- read.table("S_10_Rep5_04_stop-sign stop-sign_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+stop <- rbind(stop10sign1, stop10sign2, stop10sign3, stop10sign4, stop10sign5)
+
+stop$cars <- (stop$count.turtles - stop$count.bikes - stop$count.crashes - stop$count.graves - stop$count.stopsigns)
+
+```
+
+```{r STOP SIGN COMPARISON = PM Model at 10% not-looking | 5 Reps}
+
+stop10compsign1 <- read.table("wetransfer-6d1661/01_simuation-stop-sign-comparison_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+
+stop10compsign2 <- read.table("wetransfer-6d1661/02_simuation-stop-sign-comparison_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+stop10compsign3 <- read.table("wetransfer-6d1661/03_simulation-stop-sign-comparison.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+stop10compsign4 <- read.table("wetransfer-6d1661/04_simuation-stop-sign-comparison_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+
+stop10compsign5 <- read.table("wetransfer-6d1661/05_simuation simulation-stop-sign-comparison_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+stopcomp <- rbind(stop10compsign1, stop10compsign2, stop10compsign3, stop10compsign4, stop10compsign5)
+
+stopcomp$cars <- (stopcomp$count.turtles - stopcomp$count.bikes - stopcomp$count.crashes - stopcomp$count.graves)
+
+#PLOTTING STOP SIGN & PM-MODEL at 10%
+boxplot(stopcomp$cars, stopsign$cars,  col = c("red","orange"))
+mean(stopcomp$cars )
+mean(stop$cars)
+
+´´´
