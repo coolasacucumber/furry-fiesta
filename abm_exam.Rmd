@@ -1,0 +1,795 @@
+---
+title: "Traffic"
+author: "Lena"
+date: "16 5 2019"
+output: html_document
+---
+
+```{r libraries }
+library(tidyverse)
+library(ggplot2)
+
+setwd("~/furry-fiesta")
+
+```
+
+
+
+```{r TUNNEL | Model Checking | UPDATED }
+
+tunnel1<-read.table("Q_03_tunnel tunnel_updatedgo_rep1.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+tunnel2<-read.table("M_Rep2_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+tunnel3<-read.table("Help_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+
+tunnel4<-read.table("TU_01_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+tunnel5<-read.table("TU_02_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+tunnel6<-read.table("TU_03_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+tunnel7<-read.table("TU_04_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+tunnel8<-read.table("TU_05_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+tunnel9<-read.table("TU_06_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+tunnel10<-read.table("TU_07_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+tunnel11<-read.table("TU_08_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+tunnel12<-read.table("TU_09_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+tunnel13<-read.table("TU_10_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+tunnel14<-read.table("TU_11_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+tunnel15<-read.table("TU_12_03_tunnel tunnel_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 20,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+
+#Complete Cars in Model over Ticks Data for Tunnel Condition
+tunnnel <- rbind (tunnel1, tunnel2, tunnel3, tunnel4, tunnel5, tunnel6, tunnel7, tunnel8, tunnel9, tunnel10, tunnel11, tunnel12, tunnel13, tunnel14, tunnel15)
+
+tunnnel$cars <- (tunnnel$count.turtles - tunnnel$count.bikes - tunnnel$count.tunnelbikes - tunnnel$count.graves - tunnnel$count.crashes)
+
+
+```
+
+
+```{r TRAFFIC LIGHT TIMER | Model Checking | UPDATED | 15 Reps }
+
+traffic_timer1<-read.table("2 traffic-light-timer_Rep1UPDATED.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer2<-read.table("M_Rep2_02_traffic-light_timer traffic-light-timer_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer3<-read.table("wetransfer-8e2429/02_traffic-light_timer-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer4<-read.table("TLT_01_02_traffic-light_timer traffic-light-timer_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer5<-read.table("TLT_02_02_traffic-light_timer traffic-light-timer_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer6<-read.table("TLT_03_02_traffic-light_timer traffic-light-timer_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer7<-read.table("TLT_04_02_traffic-light_timer traffic-light-timer_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer8<-read.table("TLT_05_02_traffic-light_timer traffic-light-timer_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer9<-read.table("TLT_06_02_traffic-light_timer traffic-light-timer_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer10<-read.table("TLT_07_02_traffic-light_timer traffic-light-timer_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer11<-read.table("TLT_08_02_traffic-light_timer traffic-light-timer_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer12<-read.table("TLT_09_02_traffic-light_timer traffic-light-timer_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer13<-read.table("TLT_10_02_traffic-light_timer traffic-light-timer_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer14<-read.table("TLT_11_02_traffic-light_timer traffic-light-timer_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer15<-read.table("TLT_12_02_traffic-light_timer traffic-light-timer_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_timer <- rbind(traffic_timer1, traffic_timer3, traffic_timer2, traffic_timer4, traffic_timer5, traffic_timer6, traffic_timer7, traffic_timer8, traffic_timer9, traffic_timer10, traffic_timer11, traffic_timer12, traffic_timer13, traffic_timer14, traffic_timer15)
+
+traffic_timer$cars <- (traffic_timer$count.turtles - traffic_timer$count.eastbikes - traffic_timer$count.westbikes - traffic_timer$count.straights - traffic_timer$count.straightlights - traffic_timer$count.turnlights - traffic_timer$count.graves - traffic_timer$count.crashes)
+
+
+```
+
+
+
+```{r TRAFFIC LIGHT FLEXIBLE | Model Checking | UPDATED | 15 REPS}
+
+traffic_flex1 <- read.table("Y_05_traffic-light_flex_Rep1.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex2 <- read.table("M_Rep2_05_traffic-light_flex turn-light-flexible_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex3 <- read.table("Help_05_traffic-light_flex turn-light-flexible_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex4 <- read.table("flexi/01_traffic-light_flex.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex5 <- read.table("flexi/02_traffic-light_flex.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex6 <- read.table("flexi/03_traffic-light_flex.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex7 <- read.table("flexi/04_traffic-light_flex.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex8 <- read.table("flexi/05_traffic-light_flex.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex9 <- read.table("flexi/06_traffic-light_flex.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex10 <- read.table("flexi/07_traffic-light_flex.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex11 <- read.table("flexi/08_traffic-light_flex.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex12 <- read.table("flexi/09_traffic-light_flex.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex13 <- read.table("flexi/10_traffic-light_flex.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex14 <- read.table("flexi/11_traffic-light_flex.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+traffic_flex15 <- read.table("flexi/12_traffic-light_flex.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 21,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+
+#Complete Cars in Model over Ticks Data for Traffic Light Flexible
+traffic_flex <- rbind(traffic_flex2, traffic_flex1, traffic_flex3, traffic_flex4, traffic_flex5, traffic_flex6, traffic_flex7, traffic_flex8, traffic_flex9, traffic_flex10, traffic_flex11, traffic_flex12, traffic_flex13, traffic_flex14, traffic_flex15)
+
+traffic_flex$cars <- (traffic_flex$count.turtles - traffic_flex$count.eastbikes - traffic_flex$count.westbikes - traffic_flex$count.straights - traffic_flex$count.straightlights - traffic_flex$count.turnlights - traffic_flex$count.graves - traffic_flex$count.crashes)
+
+```
+
+
+
+
+```{r ACTUAL STOP SIGN CONDITION | 10% | 15 REPS | UPDATED}
+
+stop10sign1 <- read.table("Stop_10_actual condition_04_stop-sign stop-sign_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave1 <- dplyr::select(stop10sign1,  count.graves)
+grave1 <- grave1[293334,]
+grave1 <- as.data.frame(t(grave1))
+grave1$run <- 1
+
+stop10sign2 <- read.table("S_10_Rep2_04_stop-sign stop-sign_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave2 <- dplyr::select(stop10sign2,  count.graves)
+grave2 <- grave2[293334,]
+grave2 <- as.data.frame(t(grave2))
+grave2$run <- 2
+
+
+stop10sign3 <- read.table("S_10_Rep3_04_stop-sign stop-sign_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave3 <- dplyr::select(stop10sign3,  count.graves)
+grave3 <- grave3[293334,]
+grave3 <- as.data.frame(t(grave3))
+grave3$run <- 3
+
+
+stop10sign4 <- read.table("S_10_Rep4_04_stop-sign stop-sign_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave4 <- dplyr::select(stop10sign4,  count.graves)
+grave4 <- grave4[293334,]
+grave4 <- as.data.frame(t(grave4))
+grave4$run <- 4
+
+
+stop10sign5 <- read.table("S_10_Rep5_04_stop-sign stop-sign_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave5 <- dplyr::select(stop10sign5,  count.graves)
+grave5 <- grave5[293334,]
+grave5 <- as.data.frame(t(grave5))
+grave5$run <- 5
+
+stop10sign6 <- read.table("wetransfer-a289f4/01_stop-sign.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave6 <- dplyr::select(stop10sign6,  count.graves)
+grave6 <- grave6[293334,]
+grave6 <- as.data.frame(t(grave6))
+grave6$run <- 6
+
+stop10sign7 <- read.table("wetransfer-a289f4/02_stop-sign.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave7 <- dplyr::select(stop10sign7,  count.graves)
+grave7 <- grave7[293334,]
+grave7 <- as.data.frame(t(grave7))
+grave7$run <- 7
+
+stop10sign8 <- read.table("wetransfer-a289f4/03_stop-sign.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave8 <- dplyr::select(stop10sign8,  count.graves)
+grave8 <- grave8[293334,]
+grave8 <- as.data.frame(t(grave8))
+grave8$run <- 8
+
+stop10sign9 <- read.table("wetransfer-a289f4/04_stop-sign.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave9 <- dplyr::select(stop10sign9,  count.graves)
+grave9 <- grave9[293334,]
+grave9 <- as.data.frame(t(grave9))
+grave9$run <- 9
+
+stop10sign10 <- read.table("wetransfer-a289f4/05_stop-sign.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave10 <- dplyr::select(stop10sign10,  count.graves)
+grave10 <- grave10[293334,]
+grave10 <- as.data.frame(t(grave10))
+grave10$run <- 10
+
+
+stop10sign11 <- read.table("wetransfer-a289f4/06_stop-sign.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave11 <- dplyr::select(stop10sign11,  count.graves)
+grave11 <- grave11[293334,]
+grave11 <- as.data.frame(t(grave11))
+grave11$run <- 11
+
+stop10sign12 <- read.table("wetransfer-a289f4/07_stop-sign.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave12 <- dplyr::select(stop10sign12,  count.graves)
+grave12 <- grave12[293334,]
+grave12 <- as.data.frame(t(grave12))
+grave12$run <- 12
+
+stop10sign13 <- read.table("wetransfer-a289f4/08_stop-sign.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave13 <- dplyr::select(stop10sign13,  count.graves)
+grave13 <- grave13[293334,]
+grave13 <- as.data.frame(t(grave13))
+grave13$run <- 13
+
+
+stop10sign14 <- read.table("wetransfer-a289f4/09_stop-sign.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave14 <- dplyr::select(stop10sign14,  count.graves)
+grave14 <- grave14[293334,]
+grave14 <- as.data.frame(t(grave14))
+grave14$run <- 14
+
+
+stop10sign15 <- read.table("wetransfer-a289f4/10_stop-sign.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+grave15 <- dplyr::select(stop10sign15,  count.graves)
+grave15 <- grave15[293334,]
+grave15 <- as.data.frame(t(grave15))
+grave15$run <- 15
+
+
+#Complete Stop Sign Condition Collision Count Data
+stop <- rbind(grave1, grave2, grave3, grave4, grave5, grave6, grave7, grave8, grave9, grave10, grave11, grave12, grave13, grave14, grave15)
+
+
+#CARS IN MODEL OVER TICKS
+stopsign_forbox <- rbind(stop10sign1, stop10sign2, stop10sign3, stop10sign4, stop10sign5, stop10sign6, stop10sign7, stop10sign8, stop10sign9, stop10sign10, stop10sign11, stop10sign12, stop10sign13, stop10sign14, stop10sign15 )
+
+stopsign_forbox$cars <- (stopsign_forbox$count.turtles - stopsign_forbox$count.bikes - stopsign_forbox$count.crashes - stopsign_forbox$count.graves - stopsign_forbox$count.stopsigns)
+mean(stopsign_forbox$cars)
+
+
+
+```
+
+
+
+```{r ACTUAL INTERSECTION | 64%  | 15 Simulations | UPDATED}
+
+inter1 <- read.table("W_SImulation_64_Rep1_01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+igrave1 <- dplyr::select(inter1,  count.graves)
+igrave1 <- igrave1[293334,]
+igrave1 <- as.data.frame(t(igrave1))
+igrave1$run <- 1
+
+inter2 <- read.table("W_64_Rep2_01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave2 <- dplyr::select(inter2,  count.graves)
+igrave2 <- igrave2[293334,]
+igrave2 <- as.data.frame(t(igrave2))
+igrave2$run <- 2
+
+inter3 <- read.table("actual01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave3 <- dplyr::select(inter3,  count.graves)
+igrave3 <- igrave3[293334,]
+igrave3 <- as.data.frame(t(igrave3))
+igrave3$run <- 3
+
+inter4 <- read.table("acrtual01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave4 <- dplyr::select(inter4,  count.graves)
+igrave4 <- igrave4[293334,]
+igrave4 <- as.data.frame(t(igrave4))
+igrave4$run <- 4
+
+inter5 <- read.table("actuall01_simuation simulation_-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave5 <- dplyr::select(inter5,  count.graves)
+igrave5 <- igrave5[293334,]
+igrave5 <- as.data.frame(t(igrave5))
+igrave5$run <- 5
+
+
+inter6 <- read.table("wetransfer-b0ff34/01_simulation-64-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave6 <- dplyr::select(inter6,  count.graves)
+igrave6 <- igrave6[293334,]
+igrave6 <- as.data.frame(t(igrave6))
+igrave6$run <- 6
+
+inter7 <- read.table("wetransfer-b0ff34/02_simuation simulation-64-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave7 <- dplyr::select(inter7,  count.graves)
+igrave7 <- igrave7[293334,]
+igrave7 <- as.data.frame(t(igrave7))
+igrave7$run <- 7
+
+
+inter8 <- read.table("wetransfer-b0ff34/03_simuation simulation-64-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave8 <- dplyr::select(inter8,  count.graves)
+igrave8 <- igrave8[293334,]
+igrave8 <- as.data.frame(t(igrave8))
+igrave8$run <- 8
+
+inter9 <- read.table("wetransfer-b0ff34/04_simuation simulation-64-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave9 <- dplyr::select(inter9,  count.graves)
+igrave9 <- igrave9[293334,]
+igrave9 <- as.data.frame(t(igrave9))
+igrave9$run <- 9
+
+inter10 <- read.table("wetransfer-b0ff34/05_simuation simulation-64-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave10 <- dplyr::select(inter10,  count.graves)
+igrave10 <- igrave10[293334,]
+igrave10 <- as.data.frame(t(igrave10))
+igrave10$run <- 10
+
+inter11 <- read.table("wetransfer-b0ff34/06_simuation simulation-64-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave11 <- dplyr::select(inter11,  count.graves)
+igrave11 <- igrave11[293334,]
+igrave11 <- as.data.frame(t(igrave11))
+igrave11$run <- 11
+
+inter12 <- read.table("wetransfer-b0ff34/07_simuation simulation-64-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave12 <- dplyr::select(inter12,  count.graves)
+igrave12 <- igrave12[293334,]
+igrave12 <- as.data.frame(t(igrave12))
+igrave12$run <- 12
+
+inter13 <- read.table("wetransfer-b0ff34/08_simuation simulation-64-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave13 <- dplyr::select(inter13,  count.graves)
+igrave13 <- igrave13[293334,]
+igrave13 <- as.data.frame(t(igrave13))
+igrave13$run <- 13
+
+inter14 <- read.table("wetransfer-b0ff34/09_simuation simulation-64-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave14 <- dplyr::select(inter14,  count.graves)
+igrave14 <- igrave14[293334,]
+igrave14 <- as.data.frame(t(igrave14))
+igrave14$run <- 14
+
+inter15 <- read.table("wetransfer-b0ff34/10_simuation simulation-64-spreadsheet.csv", 
+                        header = T,   # set columns names true
+                        sep = ",",    # define the separator between       columns
+                        skip = 22,     # skip first 6 rows #22
+                        quote = "\"", # correct the column separator
+                        fill = TRUE )
+
+igrave15 <- dplyr::select(inter15,  count.graves)
+igrave15 <- igrave15[293334,]
+igrave15 <- as.data.frame(t(igrave15))
+igrave15$run <- 15
+
+##Complete Collision Count Data for PM-Model
+pm <- rbind(igrave1, igrave2, igrave3, igrave4, igrave5, igrave6, igrave7, igrave8, igrave9, igrave10, igrave11, igrave12, igrave13, igrave14, igrave15)
+
+##Complete PM-Model data for cars in model over ticks
+PMforbox <- rbind(inter2, inter1, inter3, inter4, inter5, inter6, inter7, inter8, inter9, inter10, inter11, inter12, inter13, inter14, inter15)
+
+PMforbox$cars <- (PMforbox$count.turtles - PMforbox$count.bikes - PMforbox$count.crashes - PMforbox$count.graves )
+
+
+```
+
+```{r Collision Count | PM-Model vs. Stop Sign}
+#MEAN
+mean(stop$V1)
+mean(pm$V1)
+
+#BOXPLOT
+boxplot(pm$V1, stop$V1, col = c("red", "orange"))
+
+```
+
+
+
+```{r BOX PLOT ALL MEASURES | CARS in model over ticks}
+#BOXPLOT
+boxplot(PMforbox$cars, stopsign_forbox$cars,tunnnel$cars, traffic_timer$cars, traffic_flex$cars, col = c("yellow", "orange", "pink", "red", "brown"))
+
+#MEANS
+#1 Traffic timer #2 Traffic Flex #3 Tunnel #4Stop Sign #5PM Model 
+mean(traffic_timer$cars) #7.986892
+mean(traffic_flex$cars) #4.363517
+mean(tunnnel$cars) #3.57569
+mean(stopsign_forbox$cars) #3.891559
+mean(PMforbox$cars) #3.568439 
+
+
+```
+
